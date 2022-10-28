@@ -32,7 +32,6 @@ export class AppService {
       this.logger.log(`Attempts #: ${attempts}`);
       profile = await this.getProfile(responseId);
     }
-
     return this.parseResponse(profile);
   }
 
@@ -46,28 +45,29 @@ export class AppService {
           element.caption,
           element.likes,
           element.media_type,
-          element.image_url,
+          element.image_url?.replace(/&amp;/gi, '&'),
           element.url,
           element.comments,
           element.datetime,
-          element.thumbnail_src,
+          element.thumbnail_src?.replace(/&amp;/gi, '&'),
           element.thumbnails,
-          element.video_url || null,
+          element.video_url?.replace(/&amp;/gi, '&') || null,
           element.video_view_count || 0,
         );
         posts.push(post);
       }
       const response = new ProfileResponseDTO(
         data[0].account,
-        data[0].profile_name,
-        data[0].profile_image_link,
+        data[0].profile_name || data[0].full_name,
+        data[0].profile_image_link?.replace(/&amp;/gi, '&') ||
+          data[0].profile_pic_url?.replace(/&amp;/gi, '&'),
         data[0].biography,
         data[0].external_url,
         data[0].following,
         data[0].posts_count,
         data[0].followers,
         data[0].is_verified,
-        posts,
+        data[0].is_private ? [] : posts,
       );
       return response;
     }
@@ -125,7 +125,6 @@ export class AppService {
       ).data;
       return data;
     } catch (error) {
-      console.log(error);
       this.logger.error(
         `An exception has occurred while retrieving data for the against responsesId: ${responseId}`,
         error,
