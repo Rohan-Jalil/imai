@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { InstagramProfileDTO } from './dto/instagramProfileDTO';
+import { ProfileResponseDTO } from './dto/profileResponseDTO';
 import { ScrapeProfileDTO } from './dto/scrapProfileDTO';
 
 @Controller()
@@ -10,8 +10,7 @@ export class AppController {
   @Post('/scrape')
   async scrapeProfile(
     @Body() scrapeProfilePayload: ScrapeProfileDTO,
-  ): Promise<InstagramProfileDTO> {
-    console.log('console', scrapeProfilePayload);
+  ): Promise<ProfileResponseDTO> {
     return this.appService.scrapeProfile(scrapeProfilePayload);
   }
 }
