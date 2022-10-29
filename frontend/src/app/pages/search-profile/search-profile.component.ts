@@ -28,7 +28,7 @@ export class SearchProfileComponent implements OnInit {
         this.res.profile_image_link = pic;
         if (res.posts) {
           this.noPost = false;
-        } 
+        }
         this.loading = false;
         this.showProfile = true;
       }
@@ -39,12 +39,12 @@ export class SearchProfileComponent implements OnInit {
       }
     })
   }
-  mouseEnter(event: any) { 
+  mouseEnter(event: any) {
     this.renderer?.removeClass(event.target?.children[0], 'on-hover');
   }
 
   mouseLeave(event: any) {
     this.renderer?.addClass(event.target?.children[0], 'on-hover');
   }
-  
+
 }

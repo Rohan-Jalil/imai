@@ -18,7 +18,11 @@
                 </div>
             </div>
         </div>
-        <hr />
+        <div class="row mt-3">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
     </div>
     <div class="row mt-3" *ngIf="!loading && showProfile">
         <div class="col-12">
@@ -37,7 +41,9 @@
                                     <div class="ms-3" style="margin-top: 130px;">
                                         <h5>{{ res.profile_name}}</h5>
                                         <i class="fas fa-check-circle verified" *ngIf="res.is_verified"></i>
-                                        <div class="post-position"><p>{{ res.account }}</p></div>
+                                        <div class="post-position">
+                                            <p>{{ res.account }}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -65,15 +71,16 @@
                                                     res.external_url }}</a></p>
                                         </div>
                                     </div>
-                                    
-                                      <div class="row g-2">
-                                        <div class="col-md-6 mb-2 post-position" *ngFor="let post of res.posts" 
-                                        >
+
+                                    <div class="row g-2">
+                                        <div class="col-md-6 mb-2 post-position" *ngFor="let post of res.posts">
                                             <div class="media-type">
-                                                <i class="fa fa-caret-square-o-right" aria-hidden="true" *ngIf="post.media_type === 'Reels'"></i>
-                                                <i class="fa fa-clone" aria-hidden="true" *ngIf="post.media_type === 'Carousel'"></i>
+                                                <i class="fa fa-caret-square-o-right" aria-hidden="true"
+                                                    *ngIf="post.media_type === 'Reels'"></i>
+                                                <i class="fa fa-clone" aria-hidden="true"
+                                                    *ngIf="post.media_type === 'Carousel'"></i>
                                             </div>
-                                            <div (mouseenter) ="mouseEnter($event) "  (mouseleave) ="mouseLeave($event)">
+                                            <div (mouseenter)="mouseEnter($event) " (mouseleave)="mouseLeave($event)">
                                                 <div class=" on-hover">
                                                     <div class="col-6 text-center d-flex post-heart-icon">
                                                         <i class="fa fa-heart fa-lg like-icon"></i>
@@ -82,29 +89,29 @@
                                                         </span>
                                                     </div>
                                                     <div class="col-6 text-center d-flex post-comment-icon">
-                                                            <i class="fa fa-comment fa-lg like-icon"></i>
+                                                        <i class="fa fa-comment fa-lg like-icon"></i>
                                                         <span class="like-number">
                                                             {{ post.comments }}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                
-                                              <img crossorigin="anonymous" [src]="post.image_url"
-                                                alt="image 1" class="w-100 rounded-3 max-height">
+
+                                                <img crossorigin="anonymous" [src]="post.image_url" alt="image 1"
+                                                    class="w-100 rounded-3 max-height">
                                             </div>
-                                            
+
                                         </div>
-                                      </div>                            
-                                       <div class="col-12" *ngIf="noPost">
-                                            <div class="p-4 mt-3 text-center" style="background-color: #f8f9fa;">
-                                                <p class="font-italic mb-1">No Post Found</p>
-                                            </div>
+                                    </div>
+                                    <div class="col-12" *ngIf="noPost">
+                                        <div class="p-4 mt-3 text-center" style="background-color: #f8f9fa;">
+                                            <p class="font-italic mb-1">No Post Found</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </section>
         </div>
     </div>
