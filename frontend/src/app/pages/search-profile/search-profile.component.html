@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        <hr />
     </div>
     <div class="row mt-3" *ngIf="!loading && showProfile">
         <div class="col-12">
@@ -29,14 +30,14 @@
                                 <div class="rounded-top text-white d-flex flex-row"
                                     style="background-color: rgb(153, 201, 245); height:200px;">
                                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                        <img crossorigin="anonymous" [src]="res.profile_pic_url"
+                                        <img crossorigin="anonymous" [src]="res.profile_image_link"
                                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                             style="width: 150px; z-index: 1">
                                     </div>
                                     <div class="ms-3" style="margin-top: 130px;">
-                                        <h5>{{ res.full_name ? res.full_name : res.profile_name}}</h5>
+                                        <h5>{{ res.profile_name}}</h5>
                                         <i class="fas fa-check-circle verified" *ngIf="res.is_verified"></i>
-                                        <p>{{ res.username ? res.username : res.account }}</p>
+                                        <div class="post-position"><p>{{ res.account }}</p></div>
                                     </div>
                                 </div>
                                 <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -64,48 +65,37 @@
                                                     res.external_url }}</a></p>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="lead fw-normal mb-0">Recent Posts</p>
-                                        <p class="mb-0" *ngIf="!noPost"><a href="#!" class="text-muted">Show all</a></p>
-                                    </div>
-                                    <div class="row g-2" *ngIf="!noPost">
-                                        <div *ngFor="let post of res.recent_posts">
-                                            <div class="col mb-2">
-                                                <img crossorigin="anonymous" [src]="post.image_url" alt="image 1"
-                                                    class="w-100 rounded-3">
+                                    
+                                      <div class="row g-2">
+                                        <div class="col-md-6 mb-2 post-position" *ngFor="let post of res.posts" 
+                                        >
+                                            <div class="media-type">
+                                                <i class="fa fa-caret-square-o-right" aria-hidden="true" *ngIf="post.media_type === 'Reels'"></i>
+                                                <i class="fa fa-clone" aria-hidden="true" *ngIf="post.media_type === 'Carousel'"></i>
                                             </div>
-                                            <div class="col d-flex justify-content-center">
-
-                                                <div class="col forum-info">
-                                                    <span class="views-number">
-                                                        {{ post.likes_count }}
-                                                    </span>
-                                                    <div>
-                                                        <small><i class="fa fa-thumbs-up"
-                                                                aria-hidden="true"></i></small>
+                                            <div (mouseenter) ="mouseEnter($event) "  (mouseleave) ="mouseLeave($event)">
+                                                <div class=" on-hover">
+                                                    <div class="col-6 text-center d-flex post-heart-icon">
+                                                        <i class="fa fa-heart fa-lg like-icon"></i>
+                                                        <span class="like-number">
+                                                            {{ post.likes }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-6 text-center d-flex post-comment-icon">
+                                                            <i class="fa fa-comment fa-lg like-icon"></i>
+                                                        <span class="like-number">
+                                                            {{ post.comments }}
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div class="col forum-info">
-                                                    <span class="views-number">
-                                                        {{ post.comments_count }}
-                                                    </span>
-                                                    <div>
-                                                        <small><i class="fa fa-comment" aria-hidden="true"></i></small>
-                                                    </div>
-                                                </div>
-                                                <div class="col forum-info">
-                                                    <span class="views-number">
-                                                        {{ post.views_count }}
-                                                    </span>
-                                                    <div>
-                                                        <small><i class="fa fa-eye" aria-hidden="true"></i></small>
-                                                    </div>
-                                                </div>
+                                                
+                                              <img crossorigin="anonymous" [src]="post.image_url"
+                                                alt="image 1" class="w-100 rounded-3 max-height">
                                             </div>
+                                            
                                         </div>
-                                    </div>
-                                    <div class="row" *ngIf="noPost">
-                                        <div class="col-12">
+                                      </div>                            
+                                       <div class="col-12" *ngIf="noPost">
                                             <div class="p-4 mt-3 text-center" style="background-color: #f8f9fa;">
                                                 <p class="font-italic mb-1">No Post Found</p>
                                             </div>
@@ -115,7 +105,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
         </div>
     </div>

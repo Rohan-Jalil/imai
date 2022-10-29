@@ -1,14 +1,12 @@
 export interface Profile {
-    full_name?: string;
-    profile_name?: string;
-    username?: string;
+    profile_name: string;
     account: string;
     posts_count: number;
     followers: number;
     following: number;
-    profile_pic_url: string;
+    profile_image_link: string;
     biography: string;
     external_url: string;
     is_verified: boolean;
-    recent_posts?: any;
+    posts: any;
 }

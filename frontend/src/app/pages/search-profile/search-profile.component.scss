@@ -28,3 +28,70 @@
     top: 168px;
     color: rgb(54, 116, 250);
 }
+body {
+  background: #eee;
+  
+}
+
+.ratings i {
+  color: green;
+}
+
+.install span {
+  font-size: 12px;
+}
+
+.col-md-4 {
+  margin-top: 27px;
+}
+
+.max-height {
+    max-height: 260px;
+}
+
+.post-heart-icon {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 80px;
+}
+
+.post-comment-icon {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 190px;
+}
+
+.post-position {
+    position: relative;
+}
+
+.like-number {
+    padding-left: 10px;
+}
+
+.like-icon {
+    margin-top: 7px;
+}
+.media-type {
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    color: white;
+}
+
+.on-hover {
+    display: none !important;
+}
+
+.on-hover-display {
+    display: block !important;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .post-comment-icon {
+        left: 250px;
+    }
+}

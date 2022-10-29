@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Profile } from 'src/app/interfaces/profile';
 import { ProfileService } from '../../services/profile.service';
 
@@ -14,7 +14,7 @@ export class SearchProfileComponent implements OnInit {
   noData: boolean = false;
   noPost: boolean = true;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -24,9 +24,9 @@ export class SearchProfileComponent implements OnInit {
     this.profileService.getProfileData(name).subscribe((res: Profile) => {
       if (res) {
         this.res = res;
-        const pic = res.profile_pic_url.replace(/&amp;/g, '&');
-        this.res.profile_pic_url = pic;
-        if (res.recent_posts) {
+        const pic = res.profile_image_link.replace(/&amp;/g, '&');
+        this.res.profile_image_link = pic;
+        if (res.posts) {
           this.noPost = false;
         } 
         this.loading = false;
@@ -39,5 +39,12 @@ export class SearchProfileComponent implements OnInit {
       }
     })
   }
+  mouseEnter(event: any) { 
+    this.renderer?.removeClass(event.target?.children[0], 'on-hover');
+  }
 
+  mouseLeave(event: any) {
+    this.renderer?.addClass(event.target?.children[0], 'on-hover');
+  }
+  
 }
