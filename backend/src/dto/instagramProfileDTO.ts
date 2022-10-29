@@ -9,6 +9,8 @@ export class InstagramProfileDTO {
   caption: string;
   profile_name: string;
   profile_image_link: string;
+  profile_pic_url?: string;
+  full_name?: string;
   biography: string;
   id: string;
   business_email?: any;
@@ -27,4 +29,5 @@ export class InstagramProfileDTO {
   thumbnails: Thumbnail[];
   video_view_count?: number;
   video_url: string;
+  is_private?: boolean;
 }
