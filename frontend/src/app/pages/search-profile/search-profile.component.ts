@@ -26,7 +26,7 @@ export class SearchProfileComponent implements OnInit {
         this.res = res;
         const pic = res.profile_image_link.replace(/&amp;/g, '&');
         this.res.profile_image_link = pic;
-        if (res.posts) {
+        if (res.posts.length) {
           this.noPost = false;
         }
         this.loading = false;
@@ -37,7 +37,14 @@ export class SearchProfileComponent implements OnInit {
         this.noData = true;
         this.showProfile = false;
       }
-    })
+    },
+    (error) => {
+      console.error(`ERROR: ${error}`);
+      this.loading = false;
+      this.noData = true;
+      this.showProfile = false; 
+    }
+    )
   }
   mouseEnter(event: any) {
     this.renderer?.removeClass(event.target?.children[0], 'on-hover');

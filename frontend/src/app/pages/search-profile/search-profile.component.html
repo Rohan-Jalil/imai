@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body p-4 text-black">
-                                    <div class="mb-5">
+                                    <div class="mb-5" *ngIf="res.biography">
                                         <p class="lead fw-normal mb-1">Biography</p>
                                         <div class="p-4" style="background-color: #f8f9fa;">
                                             <p class="font-italic mb-1">{{ res.biography }}</p>
@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row g-2">
+                                    <div class="row g-2" *ngIf="!noPost">
                                         <div class="col-md-6 mb-2 post-position" *ngFor="let post of res.posts">
                                             <div class="media-type">
                                                 <i class="fa fa-caret-square-o-right" aria-hidden="true"
@@ -102,11 +102,14 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-12" *ngIf="noPost">
-                                        <div class="p-4 mt-3 text-center" style="background-color: #f8f9fa;">
-                                            <p class="font-italic mb-1">No Post Found</p>
+                                    <div class="row" *ngIf="noPost">
+                                        <div class="col-12">
+                                            <div class="p-4 mt-3 text-center" style="background-color: #f8f9fa;">
+                                                <p class="font-italic mb-1">No Post Found</p>
+                                            </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
